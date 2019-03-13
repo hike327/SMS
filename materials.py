@@ -11,10 +11,7 @@ class material_properties():
         root=tree.getroot()
         
         self.cube_dimentions=np.asarray([int(i) for i in root[1][0].get('D').split(",")])
-        #eps=np.array([float(i) for i in root[0][0].get('x').split(",")])
-        #self.eps=np.array([[eps[0],0,0],[0,eps[1],0],[0,0,eps[2]]])
         self.symmetry=str(root[0][0].get('symmetry'))
-        #self.tau=0.75e-11 if self.symmetry=="Tetra" else 0.17e-11
         if self.symmetry=="Tetra":
             self.tau=0.75e-11*2/1.3
             self.eps=np.array([[1730,0,0],[0,1730,0],[0,0,144]])#np.array([[1721,0,0],[0,1721,0],[0,0,382]])
@@ -33,7 +30,6 @@ class material_properties():
             self.Ea=8e6
             self.Ps=0.42
             self.v=2#1
-        #self.eps=np.array([[1721,0,0],[0,1721,0],[0,0,382]]) if self.symmetry=="Tetra" else np.array([[529,0,0],[0,529,0],[0,0,295]])
         self.v=1.8 if self.symmetry=="Tetra" else 1.4
         self.Ea=33e6 if self.symmetry=="Tetra" else 25e6
         self.Ps=0.3641 if self.symmetry=="Tetra" else 0.455
